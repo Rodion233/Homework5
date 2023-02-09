@@ -2,7 +2,13 @@
 Найдите сумму элементов, стоящих на нечётных позициях.
 [3, 7, 23, 12] -> 19
 [-4, -6, 89, 6] -> 0 */
-int[] GenerateArray(int len = 8)
+
+int InputInt(string message)
+{
+    System.Console.Write($"{message} > ");
+    return Convert.ToInt32(Console.ReadLine());
+}
+int[] GenerateArray(int len)
 {
     int[] array = new int[len];
     Random rnd = new Random();
@@ -20,25 +26,16 @@ void PrintArray(int[] array)
     }
     System.Console.WriteLine();
 }
-// int[] Inversion(int[] array)
-// {
-//     for (int i = 0; i < array.Length; i=i+2)
-//     {
-//         int sum =0;
-//         sum += array[i];
-//     }
-//     return sum;
-// }
-int length = 10;
-int[] array = new int[length];
-Random rnd = new Random();
-int sum = 0;
-for (int i = 0; i < length; i++) {
-    array[i] = rnd.Next(1, 70);
-    if (array[i] % 2 != 0) {
-        sum += array[i];
+int OddSum(int[] array)
+{
+    int sum = 0;
+    for (int i = 1; i < array.Length; i+=2)
+    {
+            sum = sum + array[i];
     }
+    return sum;
 }
-int ar =Convert.ToInt32(array);
-System.Console.WriteLine(ar);
-Console.WriteLine(sum);
+int len = InputInt("Введите длину массива");
+int[] array = GenerateArray(len);
+PrintArray(array);
+System.Console.WriteLine($"Сумма нечетных чисел в массиве: {OddSum(array)}");
